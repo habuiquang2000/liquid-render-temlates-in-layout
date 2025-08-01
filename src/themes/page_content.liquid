@@ -13,11 +13,11 @@
 
       <!-- Product Details -->
       <div class="w-full md:w-1/2 px-4">
-        <h2 class="text-3xl font-bold mb-2">Premium Wireless Headphones</h2>
-        <p class="text-gray-600 mb-4">SKU: WH1000XM4</p>
+        <h2 class="text-3xl font-bold mb-2">{{ name }}</h2>
+        <p class="text-gray-600 mb-4">SKU: {{ sku }}</p>
         <div class="mb-4">
-          <span class="text-2xl font-bold mr-2">$349.99</span>
-          <span class="text-gray-500 line-through">$399.99</span>
+          <span class="text-2xl font-bold mr-2">${{ price }}</span>
+          <span class="text-gray-500 line-through">${{ discountPrice }}</span>
         </div>
 
         {% comment %} Product List {% endcomment %}
@@ -167,6 +167,6 @@
   </div>
 </div>
 
-<pre>Slug: {{ slug }}</pre>
-<pre>Query: {{ query | json: 2 }}</pre>
-<pre>Params: {{ params | json: 2 }}</pre>
+{% comment %} <pre>Slug: {{ slug }}</pre> {% endcomment %}
+{% comment %} <pre>Query: {{ query | json: 2 }}</pre> {% endcomment %}
+{% comment %} <pre>Params: {{ params | json: 2 }}</pre> {% endcomment %}

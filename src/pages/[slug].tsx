@@ -34,7 +34,7 @@ export default function ProductPage({
   const router = useRouter()
 
   const [slug, setSlug] = useState(router.query.slug as string)
-  const [htmlContent, setHtmlContent] = useState('Đang tải...')
+  const [htmlContent, setHtmlContent] = useState('')
 
   const changeSlug = (newSlug: string) => {
     window.history.pushState(null, '', `/${newSlug}`);
@@ -66,13 +66,18 @@ export default function ProductPage({
   }, [htmlContent])
 
   useEffect(() => {
-    const ctx = {
-      ...mockData.get(slug),
-      slug: slug,
-    }
+    setHtmlContent('loading...')
+    Promise.resolve(mockData.get(slug)).then((data) => {
+      // setTimeout(() => {
+        const ctx = {
+          ...data,
+          slug: slug,
+        }
 
-    engine.parseAndRender(templateLiquid, ctx).then((html) => {
-      setHtmlContent(html)
+        engine.parseAndRender(templateLiquid, ctx).then((html) => {
+          setHtmlContent(html)
+        })
+      // }, 1000)
     })
   }, [slug]);
 
